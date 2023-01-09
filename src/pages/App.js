@@ -1,8 +1,9 @@
+import MainNav from "../components/MainNav";
+import '../css/style.css'
+
 function App() {
   return (
-    <div className="App">
-     Hello World !
-    </div>
+    <MainNav />
   );
 }
 
