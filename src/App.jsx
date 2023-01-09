@@ -1,9 +1,9 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import MainNav from './components/MainNav';
-import Home from './pages/Home'
-import SignIn from './pages/SignIn'
-import User from './pages/User'
-import Error from './pages/Error'
+import Home from './pages/Home';
+import SignIn from './pages/SignIn';
+import User from './pages/User';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/*" element={<Error />} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
