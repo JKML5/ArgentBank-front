@@ -1,13 +1,10 @@
-import MainNav from "../components/MainNav";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
-import '../css/style.css'
 
-function App() {
+function Home() {
   return (
     <>
-      <MainNav />
       <main>
         <Hero />
       </main>
@@ -17,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
