@@ -1,9 +1,15 @@
 import MainNav from "../components/MainNav";
+import Hero from "../components/Hero";
 import '../css/style.css'
 
 function App() {
   return (
-    <MainNav />
+    <>
+      <MainNav />
+      <main>
+        <Hero />
+      </main>
+    </>
   );
 }
 
