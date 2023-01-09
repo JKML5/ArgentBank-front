@@ -1,5 +1,6 @@
 import MainNav from "../components/MainNav";
 import Hero from "../components/Hero";
+import Features from "../components/Features";
 import '../css/style.css'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <main>
         <Hero />
       </main>
+      <Features />
     </>
   );
 }
