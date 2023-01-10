@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import LoginButton from '../components/LoginButton';
 import '../css/SignIn.css';
 
 function SignIn() {
@@ -23,11 +23,7 @@ function SignIn() {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-            <Link to="/user">
-              <button type="button" className="sign-in-button">
-                Sign In
-              </button>
-            </Link>
+            <LoginButton />
           </form>
         </section>
       </main>

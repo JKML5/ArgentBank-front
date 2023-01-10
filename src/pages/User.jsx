@@ -1,9 +1,16 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Account from '../components/Account';
 import Footer from '../components/Footer';
 import '../css/User.css';
 
 function User() {
+  // Redirection if user not logged
+  if (!useSelector((state) => state.isLogged)) {
+    return <Navigate to="/" />;
+  }
+
   const userAccountsData = [
     {
       title: 'Argent Bank Checking (x8349)',
