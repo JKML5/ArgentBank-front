@@ -20,7 +20,7 @@ function Account({ title, amount, description }) {
 
 Account.propTypes = {
   title: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
