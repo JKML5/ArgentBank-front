@@ -10,6 +10,7 @@ export const login = () => ({ type: 'login' });
 export const logout = () => ({ type: 'logout' });
 
 function reducer(state = initialState, action = null) {
+  console.log(action.type); // TODO à supprimer
   if (action.type === 'login') {
     return {
       ...state,
