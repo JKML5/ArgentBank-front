@@ -13,10 +13,38 @@ function SignIn() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(username, password);
+    const requestData = {
+      email: username,
+      password,
+    };
 
-    // Connect the user
-    dispatch(login());
+    // send a post request to the api
+    fetch('http://127.0.0.1:3001/api/v1/user/login', {
+      method: 'POST',
+      body: JSON.stringify(requestData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Something went wrong ...');
+      })
+      .then((data) => {
+        // process the response data here
+        console.log(data.status);
+
+        // Connect the user
+        if (data.status === 200) {
+          dispatch(login());
+        }
+      })
+      .catch((error) => {
+        // handle the error
+        console.error('Error:', error);
+      });
   }
 
   // Redirect if user is properly logged
