@@ -9,6 +9,7 @@ function SignIn() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [formError, setFormError] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -27,14 +28,18 @@ function SignIn() {
       },
     })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
+        if (!response.ok) {
+          return response.json().then((error) => {
+            setFormError(error.message);
+            throw new Error(error.message);
+          });
         }
-        throw new Error('Something went wrong ...');
+        return response.json();
       })
+
       .then((data) => {
         // process the response data here
-        console.log(data.status);
+        console.log(data);
 
         // Connect the user
         if (data.status === 200) {
@@ -42,8 +47,7 @@ function SignIn() {
         }
       })
       .catch((error) => {
-        // handle the error
-        console.error('Error:', error);
+        console.error(error);
       });
   }
 
@@ -81,7 +85,7 @@ function SignIn() {
               <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
-
+            {formError !== '' && <p className="error">{formError}</p>}
             <button
               type="button"
               className="sign-in-button"
