@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../store';
+import { login, updateFirstName, updateLastName } from '../store';
 import Footer from '../components/Footer';
 import '../css/SignIn.css';
 
@@ -11,6 +11,37 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState('');
 
+  /**
+   * Get user's name from backend and save to redux
+   * @param {String} token
+   */
+  function getUserInfos(token) {
+    fetch('http://127.0.0.1:3001/api/v1/user/profile', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(error.message);
+          });
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status === 200) {
+          // Save user's name
+          dispatch(updateFirstName(data.body.firstName));
+          dispatch(updateLastName(data.body.lastName));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -19,7 +50,6 @@ function SignIn() {
       password,
     };
 
-    // send a post request to the api
     fetch('http://127.0.0.1:3001/api/v1/user/login', {
       method: 'POST',
       body: JSON.stringify(requestData),
@@ -36,14 +66,11 @@ function SignIn() {
         }
         return response.json();
       })
-
       .then((data) => {
-        // process the response data here
-        console.log(data);
-
         // Connect the user
         if (data.status === 200) {
           dispatch(login());
+          getUserInfos(data.body.token);
         }
       })
       .catch((error) => {
@@ -62,7 +89,7 @@ function SignIn() {
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon" />
           <h1>Sign In</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <label htmlFor="username">Username</label>
               <input
@@ -86,11 +113,7 @@ function SignIn() {
               <label htmlFor="remember-me">Remember me</label>
             </div>
             {formError !== '' && <p className="error">{formError}</p>}
-            <button
-              type="button"
-              className="sign-in-button"
-              onClick={handleSubmit}
-            >
+            <button type="submit" className="sign-in-button">
               Sign In
             </button>
           </form>

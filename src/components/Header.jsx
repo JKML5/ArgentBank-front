@@ -7,7 +7,7 @@ import '../css/Header.css';
 
 function Header() {
   const userLogged = useSelector((state) => state.isLogged);
-  console.log(userLogged);
+  const firstName = useSelector((state) => state.firstName);
 
   return (
     <nav className="main-nav">
@@ -31,7 +31,7 @@ function Header() {
         <div>
           <Link className="main-nav-item" to="/user">
             <i className="fa fa-user-circle" />
-            Tony
+            {firstName}
           </Link>
           <LogoutButton />
         </div>

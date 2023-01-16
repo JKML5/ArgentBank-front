@@ -13,6 +13,9 @@ function User() {
     return <Navigate to="/" />;
   }
 
+  const firstName = useSelector((state) => state.firstName);
+  const lastName = useSelector((state) => state.lastName);
+
   return (
     <>
       <main className="main bg-dark">
@@ -20,7 +23,7 @@ function User() {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {`${firstName} ${lastName}!`}
           </h1>
           <button type="button" className="edit-button">
             Edit Name
