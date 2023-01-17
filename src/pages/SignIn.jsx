@@ -69,7 +69,7 @@ function SignIn() {
       .then((data) => {
         // Connect the user
         if (data.status === 200) {
-          dispatch(login());
+          dispatch(login(data.body.token));
           getUserInfos(data.body.token);
         }
       })

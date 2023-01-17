@@ -1,3 +1,27 @@
+.account-edit-input-text {
+  height: 60px;
+  width: 300px;
+  margin: 0 10px;
+  padding: 0 20px;
+  border-radius: 10px;
+  font-size: 22px;
+  border: 3px solid #000000;
+}
+
+.account-edit-button-wrapper {
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.account-edit-button {
+  height: 50px;
+  width: 200px;
+  margin: 0 10px;
+  border-radius: 5px;
+  font-size: 22px;
+  border: none;
+}
+
 .account {
   display: flex;
   justify-content: space-between;

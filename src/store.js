@@ -3,25 +3,21 @@ import { createStore } from 'redux';
 // state
 const initialState = {
   isLogged: false,
+  token: '',
   firstName: '',
   lastName: '',
 };
 
 // actions creators
-export const login = () => ({ type: 'login' });
+export const login = (token) => ({ type: 'login', token });
+
 export const logout = () => ({ type: 'logout' });
 
-/**
- * @param {String} firstName
- */
 export const updateFirstName = (firstName) => ({
   type: 'updateFirstName',
   firstName,
 });
 
-/**
- * @param {String} lastName
- */
 export const updateLastName = (lastName) => ({
   type: 'updateLastName',
   lastName,
@@ -33,6 +29,7 @@ function reducer(state = initialState, action = null) {
     return {
       ...state,
       isLogged: true,
+      token: action.token,
     };
   }
 
